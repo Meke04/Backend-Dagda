@@ -9,7 +9,8 @@
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
     "db:migrate": "dotenv -e .env -- sequelize-cli db:migrate",
-    "db:migration:create": "dotenv -e .env -- sequelize-cli migration:generate"
+    "db:migration:create": "dotenv -e .env -- sequelize-cli migration:generate",
+    "db:migrate:undo": "dotenv -e .env -- sequelize-cli db:migrate:undo"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
