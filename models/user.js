@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Address, {
         foreignKey: 'userId'
       });
+
+      User.hasMany(models.Order, {
+        foreignKey: 'userId'
+      });
     }
 
   }
