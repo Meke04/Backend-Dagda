@@ -7,6 +7,11 @@ module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     
     static associate(models) {
+      Product.belongsToMany(models.Category, {
+        through: 'ProductCategories',
+        foreignKey: 'productId',
+        otherKey: 'categoryId'
+      });
     
     }
   }
