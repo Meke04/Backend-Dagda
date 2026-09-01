@@ -9,8 +9,14 @@ export default async function userRoutes(app) {
 
         const hashedPassword = await argon2.hash(password);
         // criar o usuário
-        const user = await models.User.create({ name, email, password: hashedPassword });
-        // devolver o resultado
-        return user;
+        try {
+            await models.User.create({ name, email, password: hashedPassword });
+        } catch (error) {
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                reply.status(409).send({ error: 'Email ja cadastrado.' });
+            } else {
+                reply.status(500).send({ error: 'Erro ao criar usuário.' });
+            }
+        }
     });
 }
